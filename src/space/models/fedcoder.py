@@ -654,6 +654,59 @@ class FedCoder:
 
 
 class FedCoderNonSeed(FedCoder):
+    # docstring here
+    '''
+    Parameters
+    ----------
+    seed_groups : str
+        The file containing the seed species taxonomy ids.
+    tax_group : str
+        The file containing the taxonomy groups.
+    non_seed_species : str|int
+        The non seed species taxonomy id.
+    node2vec_dir : str
+        The directory containing the node2vec embeddings.
+    aligned_dir : str   
+        The directory containing the aligned embeddings.
+    ortholog_dir : str  
+        The directory containing the ortholog pairs.
+    embedding_save_folder : str
+        The directory to save the embeddings.
+    save_top_k : int, optional
+        The number of top models to save, by default 3.
+    log_dir : str, optional
+        The directory to save the logs, by default None.
+    input_dim : int, optional
+        The input dimension of the autoencoder, by default 128.
+    latent_dim : int, optional
+        The latent dimension of the autoencoder, by default 512.
+    hidden_dims : list, optional    
+        The hidden dimensions of the autoencoder, by default None.
+    activation_fn : str, optional
+        The activation function of the autoencoder, by default None. Only useful when hidden_dims is not None.
+    batch_norm : bool, optional
+        Whether to use batch normalization, by default False. Only useful when hidden_dims is not None.
+    number_iters : int, optional
+        The number of iterations per epoch to train the model, by default 10.
+    autoencoder_type : str, optional
+        The type of autoencoder to use, by default 'naive'.
+    gamma : float, optional
+        The gamma parameter for the alignment loss, by default 0.1.
+    alpha : float, optional
+        The alpha parameter for balancing the alignment loss and reconstruction loss, by default 0.5.
+    lr : float, optional
+        The learning rate, by default 0.01.
+    device : str, optional
+        The device to use, by default 'cpu'.
+    patience : int, optional
+        The patience for early stopping, by default 5.
+    delta : float, optional
+        The delta parameter for early stopping, by default 0.0001.
+    epochs : int, optional
+        The number of epochs to train the model, by default 600.
+    from_pretrained : str, optional
+        The path to the pretrained model, by default None.
+    '''
 
     def __init__(self,seed_groups:str,
                  tax_group:str,
