@@ -11,3 +11,4 @@ local/
 results/ 
 *.ipynb
 logs/
+combined_network_embeddings.h5
