@@ -1,0 +1,14 @@
+src/space.egg-info
+data/
+# macos related
+__MACOSX/
+.DS_Store
+# local python cache
+__pycache__/
+# local jupyter notebook cache
+.ipynb_checkpoints/
+local/
+results/ 
+*.ipynb
+logs/
+combined_network_embeddings.h5
