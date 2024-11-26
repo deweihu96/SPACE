@@ -1,7 +1,12 @@
 # SPACE: STRING proteins as complementary embeddings
-Code for the manuscript: "SPACE: STRING proteins as complementary embeddings" (will be on a preprint website soon). 
+Code for the manuscript: "SPACE: STRING proteins as complementary embeddings" (will be on a preprint website soon),
+in which we precalculated:
+- cross-species network embeddings 
+- ProtT5 sequence embeddings  
 
-The precalculated embeddings can be downloaded directly from [the STRING website](https://string-db.org/cgi/download).
+for all eukaryotic proteins in STRING v12.0.
+
+You can [download all the embeddings from the STRING website](https://string-db.org/cgi/download).
 
 ![SPACE](./figures/space_overview.png)
 
@@ -109,14 +114,7 @@ proteins <- h5read(filename, paste0('species/', species, '/proteins'))
 ```
 
 
-
-## Key Features
-- **Complementary embeddings**: SPACE provides embeddings for each eukaryotic protein in the STRING network, which is complementary to the sequence-based embeddings.
-- **Maintenance of original node2vec information**: Aligned embeddings are comparable to the original node2vec embeddings, benchmarked against the KEGG pathways.
-- **Improved performance**: SPACE embeddings can improve cross-species predictions such as subcellular localization and protein function prediction.
-
-
-## To reproduce the results
+## Reproduce the results in the manuscript
 
 ### Installation
 ```bash
