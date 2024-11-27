@@ -1,5 +1,5 @@
 # SPACE: STRING proteins as complementary embeddings
-Code for the manuscript: "SPACE: STRING proteins as complementary embeddings" (will be on a preprint website soon),
+Code for the manuscript: ["SPACE: STRING proteins as complementary embeddings"](https://www.biorxiv.org/content/10.1101/2024.11.25.625140v1),
 in which we precalculated:
 - cross-species network embeddings 
 - ProtT5 sequence embeddings  
@@ -11,7 +11,23 @@ You can [download all the embeddings from the STRING website](https://string-db.
 ![SPACE](./figures/space_overview.png)
 
 ## How to Cite
-If you use this work in your research, please cite our upcoming manuscript and the STRING database.
+If you use this work in your research, please cite our manuscript 
+```
+@article {Hu2024.11.25.625140,
+	author = {Hu, Dewei and Szklarczyk, Damian and Mering, Christian von and Jensen, Lars Juhl},
+	title = {SPACE: STRING proteins as complementary embeddings},
+	elocation-id = {2024.11.25.625140},
+	year = {2024},
+	doi = {10.1101/2024.11.25.625140},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2024/11/26/2024.11.25.625140},
+	eprint = {https://www.biorxiv.org/content/early/2024/11/26/2024.11.25.625140.full.pdf},
+	journal = {bioRxiv}
+}
+
+```
+
+and the STRING database.
 ```
 @article{szklarczyk2023string,
   title={The STRING database in 2023: protein--protein association networks and functional enrichment analyses for any sequenced genome of interest},
