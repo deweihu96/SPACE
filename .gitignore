@@ -11,4 +11,13 @@ local/
 results/ 
 *.ipynb
 logs/
-combined_network_embeddings.h5
+*.h5
+data.tgz
+todo.md
+.gitignore
+README_.md
+temp.sh
+temp/
+!figures/space_overview.png
+figures/
+*.log

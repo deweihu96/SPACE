@@ -20,6 +20,9 @@ if __name__ == '__main__':
 
     argparser.add_argument('--seed_groups', type=str, default='data/euk_seed_groups.json',
                             help='Path to seed groups file')
+    
+    argparser.add_argument('--node2vec_dir', type=str, default='data/node2vec',
+                            help='Folder of node2vec embeddings')
 
     argparser.add_argument('--tax_group', type=str, default='data/euks_groups.tsv',
                             help='Path to taxonomic group file')
@@ -28,7 +31,7 @@ if __name__ == '__main__':
                             help='Taxonomy id of non seed species')
 
     argparser.add_argument('--aligned_dir', type=str,
-                           default='data/aligned',
+                           default='data/aligned_seeds',
                             help='Path to save aligned embeddings')
     
     argparser.add_argument('--ortholog_dir', type=str,
@@ -42,7 +45,7 @@ if __name__ == '__main__':
     argparser.add_argument('--save_top_k', type=int, default=3,
                             help='Number of top moldels to save')
     
-    argparser.add_argument('--log_dir', type=str, default='logs/seeds',
+    argparser.add_argument('--log_dir', type=str, default='logs/non_seeds',
                             help='Path to save logs')
     
     argparser.add_argument('--input_dim', type=int, default=128,
@@ -51,7 +54,7 @@ if __name__ == '__main__':
     argparser.add_argument('--latent_dim', type=int, default=512,
                             help='Latent dimension')
     
-    argparser.add_argument('--hidden_dim', type=int, default=None,
+    argparser.add_argument('--hidden_dims', type=int, default=None,
                             help='Hidden dimension')
     
     argparser.add_argument('--activation_fn', type=str, default=None,
@@ -60,7 +63,7 @@ if __name__ == '__main__':
     argparser.add_argument('--batch_norm', type=bool, default=False,
                             help='Batch normalization')
     
-    argparser.add_argument('--num_iters', type=int, default=10,
+    argparser.add_argument('--number_iters', type=int, default=10,
                             help='Number of iterations per epoch')
     
     argparser.add_argument('--autoencoder_type', type=str, default='naive',

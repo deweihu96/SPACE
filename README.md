@@ -161,7 +161,8 @@ python scripts/node2vec.py \
 
 ### Seed species alignment
 ```bash
-python scripts/align_seeds.py
+python scripts/align_seeds.py \
+--device cuda
 ```
 
 ## Non-seed species alignment

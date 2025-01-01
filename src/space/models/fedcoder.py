@@ -608,9 +608,6 @@ class FedCoder:
             logger.info(f'Epoch {epoch+1}')
             epoch_loss, reconstruction_loss, alignment_loss = self.one_epoch(epoch)
             self.scheduler.step(alignment_loss,epoch)
-        
-            logger.info('Evaluating the model')
-            self.eval_hitsk_epoch_end(epoch+1)
 
             ## save the best model
             self.early_stopping(alignment_loss,self.models,self.model_save_path)

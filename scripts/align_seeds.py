@@ -40,7 +40,7 @@ if __name__ == '__main__':
     argparser.add_argument('--latent_dim', type=int, default=512,
                             help='Latent dimension')
     
-    argparser.add_argument('--hidden_dim', type=int, default=None,
+    argparser.add_argument('--hidden_dims', type=int, default=None,
                             help='Hidden dimension')
     
     argparser.add_argument('--activation_fn', type=str, default=None,
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     argparser.add_argument('--batch_norm', type=bool, default=False,
                             help='Batch normalization')
     
-    argparser.add_argument('--num_iters', type=int, default=10,
+    argparser.add_argument('--number_iters', type=int, default=10,
                             help='Number of iterations per epoch')
     
     argparser.add_argument('--autoencoder_type', type=str, default='naive',
