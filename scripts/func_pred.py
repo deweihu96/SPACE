@@ -199,7 +199,7 @@ if __name__ == "__main__":
         with Pool(n_jobs) as pool:
             results = pool.starmap(predict_single_label, [(train_labels,test_labels,
                                                            label,aspect,seq_embeddings,
-                                                           aligned_embeddings) for label in aspect_labels[:20]])
+                                                           aligned_embeddings) for label in aspect_labels])
         
         for df_seq, df_aligned, df_seq_concat_aligned in results:
             seq_predictions.append(df_seq)
