@@ -21,3 +21,5 @@ temp/
 !figures/space_overview.png
 figures/
 *.log
+temp.sh
+scripts/download.sh

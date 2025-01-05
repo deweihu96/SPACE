@@ -6,7 +6,9 @@ in which we precalculated:
 
 for all eukaryotic proteins in STRING v12.0.
 
-You can [download all the embeddings from the STRING website](https://string-db.org/cgi/download).
+You can [download all the embeddings from the STRING website](https://string-db.org/cgi/download):
+- protein.network.embeddings.v12.0.h5
+- protein.sequence.embeddings.v12.0.h5
 
 ![SPACE](./figures/space_overview.png)
 
@@ -131,45 +133,6 @@ proteins <- h5read(filename, paste0('species/', species, '/proteins'))
 
 
 ## Reproduce the results in the manuscript
-
-### Installation
-```bash
-git clone https://github.com/deweihu96/SPACE.git
-conda create -n space python=3.11
-conda activate space
-cd SPACE
-pip install .
-```
-
-
-### Download Data
-
-A processed version of all the files to reproduce can be downloaded from [here](https://erda.ku.dk/archives/c2a0ba424cf75184c39a3cd37e4fe1a6/published-archive.html). You also need to download the STRING network files from the STRING website to run the node2vec embeddings.
-
-```bash
-### Run node2vec embeddings
-```bash
-## change the species_id to the species you want to run
-mkdir -p results/node2vec
-
-# with default hyperparameters, and change the input file path
-python scripts/node2vec.py \
--i data/networks/{species_id}.protein.links.v12.0.txt.gz \
--o results/node2vec
-
-```
-
-### Seed species alignment
-```bash
-python scripts/align_seeds.py \
---device cuda
-```
-
-## Non-seed species alignment
-```bash
-# align rat to the 48 seed species
-python scripts/align_non_seeds.py \
---non_seed_species 10116
-```
+Please follow this [document](./reproduce.md).
 ## License
 MIT.
