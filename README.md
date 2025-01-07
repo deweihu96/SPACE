@@ -12,6 +12,9 @@ You can [download all the embeddings from the STRING website](https://string-db.
 
 ![SPACE](./figures/space_overview.png)
 
+## Reproduce the results in the manuscript
+Please follow this [document](./reproduce.md).
+
 ## How to Cite
 If you use this work in your research, please cite our manuscript 
 ```
@@ -132,7 +135,6 @@ proteins <- h5read(filename, paste0('species/', species, '/proteins'))
 ```
 
 
-## Reproduce the results in the manuscript
-Please follow this [document](./reproduce.md).
+
 ## License
 MIT.
