@@ -71,11 +71,11 @@ with h5py.File(filename, 'r') as f:
     for key in meta_keys:
         print(key, f['metadata'].attrs[key])
 
-  embedding = f['embeddings'][:]
-  proteins = f['proteins'][:]
-
-  # protein names are stored as bytes, convert them to strings
-  proteins = [p.decode('utf-8') for p in proteins]
+    embedding = f['embeddings'][:]
+    proteins = f['proteins'][:]
+	
+    # protein names are stored as bytes, convert them to strings
+    proteins = [p.decode('utf-8') for p in proteins]
 ```
 
 In R:  
