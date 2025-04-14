@@ -112,7 +112,7 @@ with h5py.File(filename, 'r') as f:
   
   species = '4932'  # if we check the brewer's yeast
   embeddings = f['species'][species]['embeddings'][:]
-  proteins = f['proteins'][species]['embeddings'][:]
+  proteins = f['species'][species]['proteins'][:]
 
   # protein names are stored as bytes, convert them to strings
   proteins = [p.decode('utf-8') for p in proteins]
