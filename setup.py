@@ -21,6 +21,6 @@ setup(
         "tensorboard==2.18.0",
         "umap-learn==0.5.7",
         "seaborn==0.13.2",
-        "cafa-eval==1.2.1"
+        "cafaeval==1.2.1"
     ],
 )
