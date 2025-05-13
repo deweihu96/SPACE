@@ -12,19 +12,18 @@ mkdir results
 ```
 
 ### 2. Download the data from [here](https://erda.ku.dk/archives/8a9fb8f6d9811fe66574a9a989d4a29d/published-archive.html) and decompress it to the `data` folder.
-It contains all the data for the project (`~169GB`). Especially, the benchmark data:
-- `data/benchmarks/deeploc/benchmark` is from [DeepLoc 2.0](https://services.healthtech.dtu.dk/services/DeepLoc-2.0/)
-- `data/benchmarks/netgo/benchmark` is from [NetGO](https://drive.google.com/drive/folders/1HLH1aCDxlrVpu1zKvgfdQFEFnbT8gChm)
+It contains node2vec and aligned embeddings, and files for make alignment for the project (`~30GB`).
 
 ```bash 
 # decompress
 tar -xvf data.tgz
-```
-```md5sum data.tgz 471bf89794e84de3670c6b703410d1ac```
 
-and the benchmark data and the STRING files:
+md5sum data.tgz 471bf89794e84de3670c6b703410d1ac
+```
+
+then download the benchmark data and the STRING files:
 ```bash
-# download the STRING networks and sequences
+# download the STRING networks and sequences (>100GB)
 mkdir -p data/networks
 SPECIES="data/euks.txt"
 for species in $(cat $SPECIES); do
@@ -104,3 +103,6 @@ python scripts/pr_curves.py
 
 # due to the copyright issue, we cannot provide the KEGG data and its evaluation
 ```
+
+#### 5. Generate the aligned embeddings with your own networks
+To be updated in the future.
