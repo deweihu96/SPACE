@@ -22,6 +22,26 @@ tar -xvf data.tgz
 ```
 ```md5sum data.tgz 471bf89794e84de3670c6b703410d1ac```
 
+and the benchmark data and the STRING files:
+```bash
+# download the STRING networks and sequences
+mkdir -p data/networks
+SPECIES="data/euks.txt"
+for species in $(cat $SPECIES); do
+    # networks
+    wget https://stringdb-downloads.org/download/protein.links.v12.0/$species.protein.links.v12.0.txt.gz -O data/networks/$species.protein.links.v12.0.txt.gz -q
+    # sequences
+    wget https://stringdb-downloads.org/download/protein.sequences.v12.0/$species.protein.sequences.v12.0.fa.gz -O data/networks/$species.protein.sequences.v12.0.fa.gz -q
+done
+
+# download the subcellular localization data from DeepLoc2.0
+mkdir -p data/benchmarks/deeploc20
+wget https://services.healthtech.dtu.dk/services/DeepLoc-2.0/data/Swissprot_Train_Validation_dataset.csv -O data/benchmarks/deeploc20/Swissprot_Train_Validation_dataset.csv -q
+wget https://services.healthtech.dtu.dk/services/DeepLoc-2.0/data/hpa_testset.csv -O data/benchmarks/deeploc20/hpa_testset.csv -q
+
+```
+the protein function prediction benchmark has to be downloaded manually from the following link, according the NetGO paper (https://doi.org/10.1093/nar/gkz388): https://drive.google.com/drive/folders/1HLH1aCDxlrVpu1zKvgfdQFEFnbT8gChm
+
 ### 3. Generate the functional embeddings 
 You can get the help with each script by running `python scripts/xxx.py -h`.
 

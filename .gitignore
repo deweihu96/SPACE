@@ -23,3 +23,6 @@ figures/
 *.log
 temp.sh
 scripts/download.sh
+data.tar
+e6.og2seqs_and_species.tsv
+make_your_alignment.md
