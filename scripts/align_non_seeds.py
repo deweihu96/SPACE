@@ -31,7 +31,7 @@ if __name__ == '__main__':
                             help='Taxonomy id of non seed species')
 
     argparser.add_argument('--aligned_dir', type=str,
-                           default='data/aligned_seeds',
+                           default='data/aligned',
                             help='Path to save aligned embeddings')
     
     argparser.add_argument('--ortholog_dir', type=str,

@@ -25,12 +25,13 @@ then download the benchmark data and the STRING files:
 ```bash
 # download the STRING networks and sequences (>100GB)
 mkdir -p data/networks
+mkdir -p data/sequences
 SPECIES="data/euks.txt"
 for species in $(cat $SPECIES); do
     # networks
     wget https://stringdb-downloads.org/download/protein.links.v12.0/$species.protein.links.v12.0.txt.gz -O data/networks/$species.protein.links.v12.0.txt.gz -q
     # sequences
-    wget https://stringdb-downloads.org/download/protein.sequences.v12.0/$species.protein.sequences.v12.0.fa.gz -O data/networks/$species.protein.sequences.v12.0.fa.gz -q
+    wget https://stringdb-downloads.org/download/protein.sequences.v12.0/$species.protein.sequences.v12.0.fa.gz -O data/sequences/$species.protein.sequences.v12.0.fa.gz -q
 done
 
 # download the subcellular localization data from DeepLoc2.0
@@ -82,7 +83,13 @@ python scripts/add_singletons.py \
 #### 3.5 Generate the ProtT5 embeddings
 ```bash
 # ref: https://github.com/agemagician/ProtTrans
-python scripts/prott5_emb.py 
+# for example, human sequences
+python scripts/prott5_emb.py \
+--seq_file data/sequences/9606.protein.sequences.v12.0.fa.gz \
+--save_path results/prott5/9606.h5 \
+--max_length 1000 \ # make sure you have enough memory
+--min_length 1 \
+--device cuda
 ```
 
 

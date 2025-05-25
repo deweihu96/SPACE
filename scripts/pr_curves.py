@@ -20,8 +20,6 @@ if __name__ == "__main__":
     pos_num = pos_cv.iloc[:,1:-1].sum().values.sum()
     pos_num/(pos_cv.iloc[:,1:-1].shape[0]*len(pos_cv.columns[1:-1]))
 
-
-
     plt.figure(figsize=(18, 10))
     plt.subplots_adjust(wspace=0.3,hspace=0.37)  # Increase vertical space between plots
 
@@ -102,8 +100,8 @@ if __name__ == "__main__":
             
             plt.plot(df['rc'], df['pr'], label=label_dict[emb], 
                     linestyle='-', linewidth=2, color=colors[idx])
-
-            pr,rc = netgo_scores[netgo_scores['entry']==aspect+'_'+emb_][['pr','rc']].values[0]
+            
+            pr,rc = netgo_scores[netgo_scores['entry']==aspect+'_'+emb_+'_merged'][['pr','rc']].values[0]
             ## annotate this point, with 'x'
             plt.scatter(rc, pr, s=80, color=colors[idx], marker='*')
             plt.xlabel('Recall',fontsize=label_size)
