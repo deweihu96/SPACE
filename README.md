@@ -49,7 +49,7 @@ and the STRING database.
 }
 ```
 ## Usage of SPACE embeddings
-To have the best prediction results, based on our test, it's better to concatenate the cross-species network embeddings and the ProtT5 sequence embeddings. (That is our **SPACE** embeddings mentioned in the manuscript.)
+To have the best prediction results, based on our test, it's better to concatenate the cross-species network embeddings and the ProtT5 sequence embeddings. (That is our **SPACE** embeddings mentioned [in the manuscript](https://www.biorxiv.org/content/10.1101/2024.11.25.625140v1).)
 
 
 ### How to read the embedding files
