@@ -7,6 +7,7 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 from cafaeval.evaluation import cafa_eval
 from sklearn import metrics
+import argparse
 
 def load_data(idmapping,dataset,train):
 
@@ -158,26 +159,32 @@ def eval_single_modal(ontology, prediction_dir, ground_truth,save_name,n_jobs):
 
 
 if __name__ == "__main__":
-
-    train_idmapping = 'data/benchmarks/netgo/train_idmapping_euk.tsv'
-
-    train_dataset = 'data/benchmarks/netgo/benchmark/train.txt'
-
-    test_idmapping = 'data/benchmarks/netgo/test_idmapping_euk.tsv'
-
-    test_dataset = 'data/benchmarks/netgo/benchmark/test.txt'
-
-    aligned_dir = 'data/full_functional'
-
-    t5_dir = 'data/t5'
-
-    save_dir = 'results/func_pred'
-
-    ontology = 'data/benchmarks/netgo/benchmark/gene_ontology_edit.obo.2017-11-01'
-
-    ground_truth_dir = 'data/benchmarks/netgo'
-
-    n_jobs = 16
+    
+    argparser = argparse.ArgumentParser(description='Run functional prediction using SPACE embeddings')
+    argparser.add_argument('--train_idmapping', type=str, default='data/benchmarks/netgo/train_idmapping_euk.tsv', help='Path to train idmapping file')
+    argparser.add_argument('--train_dataset', type=str, default='data/benchmarks/netgo/train.txt', help='Path to train dataset file')
+    argparser.add_argument('--test_idmapping', type=str, default='data/benchmarks/netgo/test_idmapping_euk.tsv', help='Path to test idmapping file')
+    argparser.add_argument('--test_dataset', type=str, default='data/benchmarks/netgo/test.txt', help='Path to test dataset file')
+    argparser.add_argument('--aligned_dir', type=str, default='data/functional_emb', help='Path to aligned embeddings directory')
+    argparser.add_argument('--t5_dir', type=str, default='data/t5_emb', help='Path to T5 embeddings directory')
+    argparser.add_argument('--save_dir', type=str, default='results/func_pred', help='Directory to save results')
+    argparser.add_argument('--ontology', type=str, default='data/benchmarks/netgo/go_2020_10_09.obo', help='Path to ontology file')
+    argparser.add_argument('--ground_truth_dir', type=str, default='data/benchmarks/netgo', help='Path to ground truth directory')
+    argparser.add_argument('--n_jobs', type=int, default=3, help='Number of jobs for parallel processing')
+    args = argparser.parse_args()
+    
+    save_dir = args.save_dir
+    train_idmapping = args.train_idmapping
+    train_dataset = args.train_dataset
+    test_idmapping = args.test_idmapping
+    test_dataset = args.test_dataset
+    aligned_dir = args.aligned_dir
+    t5_dir = args.t5_dir
+    ontology = args.ontology
+    ground_truth_dir = args.ground_truth_dir
+    n_jobs = args.n_jobs
+    logger.info('Starting functional prediction with SPACE embeddings')
+    logger.info(f'Using {n_jobs} jobs for parallel processing') 
 
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
@@ -191,6 +198,7 @@ if __name__ == "__main__":
     for aspect in ['cc', 'bp', 'mf']:
         logger.info(f'Predicting {aspect}')
         aspect_labels = train_labels[train_labels['aspect'] == aspect]['label'].unique()
+        
         logger.info(f'Aspect {aspect} has {len(aspect_labels)} labels')
         seq_predictions = []
         aligned_predictions = []

@@ -96,7 +96,9 @@ def load_cv_set(cv_set, cv_id_mapping, ):
 
     cv_ids = cv_set['STRING_id']
 
-    cv_label_headers = ['Cytoplasm','Nucleus','Extracellular','Cell membrane','Mitochondrion','Plastid','Endoplasmic reticulum','Lysosome/Vacuole','Golgi apparatus','Peroxisome']
+    cv_label_headers = ['Cytoplasm','Nucleus','Extracellular','Cell membrane',
+                        'Mitochondrion','Plastid','Endoplasmic reticulum',
+                        'Lysosome/Vacuole','Golgi apparatus','Peroxisome']
 
     cv_labels = cv_set[cv_label_headers].values.astype(int)
 
@@ -453,15 +455,15 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Benchmarking subcellular localization with logistic regression')
 
-    parser.add_argument('--aligned_dir',type=str,help='Directory containing aligned embeddings',required=False,default='data/full_functional')
+    parser.add_argument('--aligned_dir',type=str,help='Directory containing aligned embeddings',required=False,default='data/functional_emb')
 
-    parser.add_argument('--t5_dir',type=str,help='Directory containing t5 embeddings',required=False,default='data/t5')
+    parser.add_argument('--t5_dir',type=str,help='Directory containing t5 embeddings',required=False,default='data/t5_emb')
 
-    parser.add_argument('--cv_set',type=str,help='Cross validation set',required=False,default='data/benchmarks/deeploc/benchmark/Swissprot_Train_Validation_dataset.csv')
+    parser.add_argument('--cv_set',type=str,help='Cross validation set',required=False,default='data/benchmarks/deeploc/Swissprot_Train_Validation_dataset.csv')
 
     parser.add_argument('--cv_mapping',type=str,help='Cross validation id mapping',required=False,default='data/benchmarks/deeploc/cv_idmapping.tsv')
 
-    parser.add_argument('--hpa_set',type=str,help='HPA test set',required=False,default='data/benchmarks/deeploc/benchmark/hpa_testset.csv')
+    parser.add_argument('--hpa_set',type=str,help='HPA test set',required=False,default='data/benchmarks/deeploc/hpa_testset.csv')
 
     parser.add_argument('--human_alias',type=str,help='Human alias mapping',required=False,default='data/benchmarks/deeploc/9606.protein.aliases.v12.0.txt.gz')
 

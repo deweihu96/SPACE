@@ -81,6 +81,7 @@ def infer_common_ancestors(euk_groups,ncbi_lineage,eggnog_dir,
 
 
 def min_max(filename):
+
     p,e = H5pyData.read(filename, 16)
 
     min_e = float(np.min(e))
@@ -541,7 +542,7 @@ if __name__ == "__main__":
     argparser.add_argument('--scaler',type=float,required=False,
                             default=1.497,
                             help='Scaling factor for embeddings, default is 1.497 if you use the embeddings in data/aligned. \
-                            None if you want to calculate the scaling factor')
+                            Use `None` if you want to calculate the scaling factor')
     
     args = argparser.parse_args()
 

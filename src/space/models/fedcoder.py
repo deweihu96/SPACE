@@ -788,7 +788,8 @@ class FedCoderNonSeed(FedCoder):
         ## load the node2vec embeddings
         logger.info('Loading the node2vec embeddings')
         self.node2vec_embeddings = dict()
-        for species in tqdm(self.seed_species):
+        for species in self.seed_species:
+            print(f'Loading {species} from {self.aligned_dir}/{species}.h5')
             self.node2vec_embeddings[str(species)] = NodeEmbedData(f'{self.aligned_dir}/{species}.h5')
         self.node2vec_embeddings[str(self.non_seed_species)] = NodeEmbedData(f'{self.node2vec_dir}/{self.non_seed_species}.h5')
         ## dataloader
@@ -834,7 +835,7 @@ class FedCoderNonSeed(FedCoder):
 
         self.optimizer = torch.optim.Adam(self.parameters,lr=self.lr)
 
-        self.scheduler = ReduceLROnPlateau(self.optimizer,'min',patience=3,verbose=True,factor=0.1)
+        self.scheduler = ReduceLROnPlateau(self.optimizer,'min',patience=3,factor=0.1)
 
         self.early_stopping = EarlyStopping(patience=self.patience,delta=self.delta,save_models=True)
 
