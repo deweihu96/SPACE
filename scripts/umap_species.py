@@ -5,15 +5,27 @@ import pandas as pd
 from space.tools.data import  H5pyData
 from tqdm import tqdm
 import os
+import argparse
 
-if os.path.exists('results/figures') == False:
-    os.makedirs('results/figures')
+argparser = argparse.ArgumentParser(description='UMAP visualization of species embeddings')
+argparser.add_argument('--save_dir', type=str, default='./results',
+                       help='Directory to save the results')
+argparser.add_argument('--embedding_dir', type=str, default='data/aligned',
+                       help='Directory containing the species embeddings')
+args = argparser.parse_args()
+
+
+
+if os.path.exists(args.save_dir) == False:
+    os.makedirs(args.save_dir)
 
 species = [9606,4932,3702,44689,10116]
+                 
+
 species_names={4932:'Saccharomyces cerevisiae',3702:'Arabidopsis thaliana',
                9606:'Homo sapiens',44689:'Dictyostelium discoideum',10116:'Rattus norvegicus'}
 colors = ["#e60049","#0bb4ff","#50e991","#9b19f5","#ffa300"]
-embedding_dir = 'data/aligned'
+embedding_dir = args.embedding_dir
 
 if __name__ == '__main__':
 
@@ -62,4 +74,4 @@ if __name__ == '__main__':
 
     plt.tight_layout()
 
-    plt.savefig('results/figures/figure_1_umap_species.png', dpi=300)
+    plt.savefig(f'{args.save_dir}/figure_1_umap_species.png', dpi=300)

@@ -11,36 +11,34 @@ pip install .
 mkdir results
 ```
 
-### 2. Download the data from [here](https://erda.ku.dk/archives/8a9fb8f6d9811fe66574a9a989d4a29d/published-archive.html) and decompress it to the `data` folder.
-It contains node2vec and aligned embeddings, and files for make alignment for the project (`~30GB`).
+### 2. Download the data from
+Download the data and decompress it to the `data` folder.
+The `data/` is around `212GB` in total, including the networks, sequences, all the embeddings, and benchmark datasets.
 
-```bash 
-# decompress
-tar -xvf data.tgz
+If you only need to use the embeddings, you should download from the STRING website: https://string-db.org/cgi/download
 
-md5sum data.tgz 471bf89794e84de3670c6b703410d1ac
-```
+This data set only serves as a backup and reference for reimplementation.
 
-then download the benchmark data and the STRING files:
 ```bash
-# download the STRING networks and sequences (>100GB)
-mkdir -p data/networks
-mkdir -p data/sequences
-SPECIES="data/euks.txt"
-for species in $(cat $SPECIES); do
-    # networks
-    wget https://stringdb-downloads.org/download/protein.links.v12.0/$species.protein.links.v12.0.txt.gz -O data/networks/$species.protein.links.v12.0.txt.gz -q
-    # sequences
-    wget https://stringdb-downloads.org/download/protein.sequences.v12.0/$species.protein.sequences.v12.0.fa.gz -O data/sequences/$species.protein.sequences.v12.0.fa.gz -q
-done
-
-# download the subcellular localization data from DeepLoc2.0
-mkdir -p data/benchmarks/deeploc20
-wget https://services.healthtech.dtu.dk/services/DeepLoc-2.0/data/Swissprot_Train_Validation_dataset.csv -O data/benchmarks/deeploc20/Swissprot_Train_Validation_dataset.csv -q
-wget https://services.healthtech.dtu.dk/services/DeepLoc-2.0/data/hpa_testset.csv -O data/benchmarks/deeploc20/hpa_testset.csv -q
-
+wget https://sid.erda.dk/share_redirect/cZ4tLqQZhv -O data.tar
+tar -xvf data.tar 
 ```
+eggNOG dataset is sourced from the eggNOG database: http://eggnog6.embl.de/download/eggnog_6.0/, make sure you cite the eggNOG database if you use the data in your work.
+```
+Hernández-Plaza, Ana, et al. "eggNOG 6.0: enabling comparative genomics across 12 535 organisms." Nucleic Acids Research 51.D1 (2023): D389-D394.
+```
+
+
+The DeeoLoc dataset is originally from https://services.healthtech.dtu.dk/services/DeepLoc-2.0/
 the protein function prediction benchmark has to be downloaded manually from the following link, according the NetGO paper (https://doi.org/10.1093/nar/gkz388): https://drive.google.com/drive/folders/1HLH1aCDxlrVpu1zKvgfdQFEFnbT8gChm
+
+Please cite the original data sources and respect the rules if you use the benchmark data in your work:
+```
+Thumuluri, Vineet, et al. "DeepLoc 2.0: multi-label subcellular localization prediction using protein language models." Nucleic acids research 50.W1 (2022): W228-W234.
+
+Yao, Shuwei, et al. "NetGO 2.0: improving large-scale protein function prediction with massive sequence, text, domain, family and network information." Nucleic acids research 49.W1 (2021): W469-W475.
+```
+
 
 ### 3. Generate the functional embeddings 
 You can get the help with each script by running `python scripts/xxx.py -h`.
@@ -81,20 +79,40 @@ python scripts/add_singletons.py \
 ```
 
 #### 3.5 Generate the ProtT5 embeddings
+
 ```bash
-# ref: https://github.com/agemagician/ProtTrans
+# make sure you have the sentencepiece library installed
+pip install sentencepiece
+
+# make sure you have enough GPU memory, otherwise adjust the min_length and max_length to run the script only for sequence within the range
+# for example, with min_length=1 and max_length=1000, the sequences: 1<=length<=1000 will be processed. 
+
+# if you have enough GPU memory (~60GB), those sequences with length [1,8000] can be processed.
+# we ran the ProtT5 embedding on those super-long sequences with length [8000, 100000] on a CPU server, up to 400GB memory.
+
 # for example, human sequences
 python scripts/prott5_emb.py \
 --seq_file data/sequences/9606.protein.sequences.v12.0.fa.gz \
 --save_path results/prott5/9606.h5 \
---max_length 1000 \ # make sure you have enough memory
+--max_length 1000 \
 --min_length 1 \
 --device cuda
+```
+
+Reference: 
+```
+https://github.com/agemagician/ProtTrans 
+https://huggingface.co/Rostlab/prot_t5_xl_half_uniref50-enc
 ```
 
 
 #### 4. Evaluate the functional embeddings
 
+To run the following scripts with default parameters, it uses the data inside the `data` folder.
+
+Change the input to your own data if you want to evaluate the functional embeddings on your own networks.
+
+Use the `-h` option to get the help message for each script.
 ```bash
 # subcellular localization prediction, it also generates the umap plot of the subcellular localization
 python scripts/subloc.py
