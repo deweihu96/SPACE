@@ -12,6 +12,9 @@ You can [download all the embeddings from the STRING website](https://string-db.
 
 ![SPACE](./figures/space_overview.png)
 
+## If you find our work interesting, please give us a star!
+[![Star History Chart](https://api.star-history.com/svg?repos=deweihu96/SPACE&type=Date)](https://www.star-history.com/#deweihu96/SPACE&Date)
+
 ## Reproduce the results in the manuscript
 Please follow this [document](./reproduce.md).
 
