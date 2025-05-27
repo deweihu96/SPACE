@@ -44,22 +44,25 @@ Yao, Shuwei, et al. "NetGO 2.0: improving large-scale protein function predictio
 You can get the help with each script by running `python scripts/xxx.py -h`.
 
 #### 3.1 Run the node2vec algorithm to generate the node embeddings.
-
 ```bash
 ## for instance, run the node2vec on human network
 mkdir results/node2vec
 
 python scripts/node2vec.py \
--i data/networks/9606.protein.links.v12.0.txt.gz \
--o results/node2vec
+--input_network data/networks/9606.protein.links.v12.0.txt.gz \
+--node2vec_output results/node2vec
 ```
+You could also use other node embedding algorithms as the input to alignment, but make sure that the output embeddings are in the same format as the node2vec embeddings. 
+Also the index of the nodes in the embeddings should be the same as the index of the nodes in the network file, or the nodes in the node2vec embeddings.
 
 #### 3.2 Run the FedCoder to align the seed species
 
 ```bash
 # with the best hyperparameters in the paper
 python scripts/align_seeds.py \
---embedding_save_folder results/aligned 
+--seed_species data/seeds.txt \
+--node2vec_dir data/node2vec \
+--aligned_embedding_save_dir results/aligned_embeddings
 ```
 
 #### 3.3 Run the FedCoder to align the non-seed species
@@ -67,14 +70,17 @@ python scripts/align_seeds.py \
 ```bash
 # for instance, align Rattus norvegicus (Norway rat)  
 python scripts/align_non_seeds.py \
+--node2vec_dir data/node2vec \
+--aligned_dir data/aligned \
 --non_seed_species 10116 \
---embedding_save_folder results/aligned
+--aligned_embedding_save_dir results/aligned_embeddings
 ```
 
 #### 3.4 Add the singletons to the aligned embedding space
 
 ```bash
-python scripts/add_singletons.py \
+python scripts/add_singleton.py \
+--aligned_dir data/aligned \
 --full_embedding_save_dir results/functional_embeddings
 ```
 

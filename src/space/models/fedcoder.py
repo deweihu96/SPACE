@@ -315,7 +315,7 @@ class FedCoder:
         The directory containing the node2vec embeddings.
     ortholog_dir : str
         The directory containing the ortholog pairs.
-    embedding_save_folder : str
+    aligned_embedding_save_dir : str
         The directory to save the embeddings.
     save_top_k : int, optional
         The number of top models to save, by default 3.
@@ -356,7 +356,7 @@ class FedCoder:
     def __init__(self,seed_species:str,
                  node2vec_dir:str,
                  ortholog_dir:str,
-                 embedding_save_folder:str,
+                 aligned_embedding_save_dir:str,
                  save_top_k:int=3,
                  log_dir:str=None,
                  input_dim:int=128,
@@ -382,9 +382,9 @@ class FedCoder:
 
         self.node2vec_dir = node2vec_dir
         self.ortholog_dir = ortholog_dir
-        self.embedding_save_folder = embedding_save_folder
+        self.embedding_save_folder = aligned_embedding_save_dir
         self.save_top_k = save_top_k
-        log_dir = log_dir if log_dir is not None else os.path.join(embedding_save_folder,'logs')
+        log_dir = log_dir if log_dir is not None else os.path.join(aligned_embedding_save_dir,'logs')
         log_dir = os.path.join(log_dir, datetime.now().strftime("%Y%m%d-%H%M%S"))
         self.log_dir = log_dir + '-' + str(uuid4())
         self.model_save_path = os.path.join(self.log_dir,'model.pth')
@@ -481,7 +481,7 @@ class FedCoder:
 
         self.optimizer = torch.optim.Adam(self.parameters,lr=self.lr)
 
-        self.scheduler = ReduceLROnPlateau(self.optimizer, 'min',patience=3,verbose=True,factor=0.1)
+        self.scheduler = ReduceLROnPlateau(self.optimizer, 'min',patience=3,factor=0.1)
 
         self.early_stopping = EarlyStopping(patience=self.patience,delta=self.delta,save_models=True)
 
@@ -667,7 +667,7 @@ class FedCoderNonSeed(FedCoder):
         The directory containing the aligned embeddings.
     ortholog_dir : str  
         The directory containing the ortholog pairs.
-    embedding_save_folder : str
+    aligned_embedding_save_dir : str
         The directory to save the embeddings.
     save_top_k : int, optional
         The number of top models to save, by default 3.
@@ -711,7 +711,7 @@ class FedCoderNonSeed(FedCoder):
                  node2vec_dir:str,
                  aligned_dir:str,
                  ortholog_dir:str,
-                 embedding_save_folder:str,
+                 aligned_embedding_save_dir:str,
                  save_top_k:int=3,
                  log_dir:str=None,
                  input_dim:int=128,
@@ -742,9 +742,9 @@ class FedCoderNonSeed(FedCoder):
         self.node2vec_dir = node2vec_dir
         self.aligned_dir = aligned_dir
         self.ortholog_dir = f'{ortholog_dir}/{self.non_seed_species}'
-        self.embedding_save_folder = embedding_save_folder
+        self.embedding_save_folder = aligned_embedding_save_dir
         self.save_top_k = save_top_k
-        log_dir = log_dir if log_dir is not None else os.path.join(embedding_save_folder,'logs')
+        log_dir = log_dir if log_dir is not None else os.path.join(aligned_embedding_save_dir,'logs')
         log_dir = os.path.join(log_dir, datetime.now().strftime("%Y%m%d-%H%M%S"))
         log_dir = log_dir + '-' + str(uuid4())
         self.log_dir = log_dir
