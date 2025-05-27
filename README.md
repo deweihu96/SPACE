@@ -19,35 +19,14 @@ You can [download all the embeddings from the STRING website](https://string-db.
 Please follow this [document](./reproduce.md).
 
 ## How to Cite
-If you use this work in your research, please cite our manuscript 
-```
-@article {Hu2024.11.25.625140,
-	author = {Hu, Dewei and Szklarczyk, Damian and Mering, Christian von and Jensen, Lars Juhl},
-	title = {SPACE: STRING proteins as complementary embeddings},
-	elocation-id = {2024.11.25.625140},
-	year = {2024},
-	doi = {10.1101/2024.11.25.625140},
-	publisher = {Cold Spring Harbor Laboratory},
-	URL = {https://www.biorxiv.org/content/early/2024/11/26/2024.11.25.625140},
-	eprint = {https://www.biorxiv.org/content/early/2024/11/26/2024.11.25.625140.full.pdf},
-	journal = {bioRxiv}
-}
+If you use this work in your research, please cite **the SPACE manuscript**:  
 
-```
+Hu, D., Szklarczyk, D., von Mering, C., & Jensen, L. J. (2024). SPACE: STRING proteins as complementary embeddings. bioRxiv, 2024-11. https://doi.org/10.1101/2024.11.25.625140  
 
-and the STRING database.
-```
-@article{szklarczyk2023string,
-  title={The STRING database in 2023: protein--protein association networks and functional enrichment analyses for any sequenced genome of interest},
-  author={Szklarczyk, Damian and Kirsch, Rebecca and Koutrouli, Mikaela and Nastou, Katerina and Mehryary, Farrokh and Hachilif, Radja and Gable, Annika L and Fang, Tao and Doncheva, Nadezhda T and Pyysalo, Sampo and others},
-  journal={Nucleic acids research},
-  volume={51},
-  number={D1},
-  pages={D638--D646},
-  year={2023},
-  publisher={Oxford University Press}
-}
-```
+and **the STRING database**: 
+
+Szklarczyk, D., Nastou, K., Koutrouli, M., Kirsch, R., Mehryary, F., Hachilif, R., ... & von Mering, C. (2025). The STRING database in 2025: protein networks with directionality of regulation. Nucleic Acids Research, 53(D1), D730-D737. https://doi.org/10.1093/nar/gkae1113
+
 ## Usage of SPACE embeddings
 To have the best prediction results, based on our test, it's better to concatenate the cross-species network embeddings and the ProtT5 sequence embeddings. (That is our **SPACE** embeddings mentioned [in the manuscript](https://www.biorxiv.org/content/10.1101/2024.11.25.625140v1).)
 

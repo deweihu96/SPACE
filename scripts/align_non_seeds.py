@@ -38,7 +38,7 @@ if __name__ == '__main__':
                            default='data/orthologs/non_seeds',
                             help='Path to eggnog group files')
     
-    argparser.add_argument('--embedding_save_folder', type=str,
+    argparser.add_argument('--aligned_embedding_save_dir', type=str,
                            default='results/non_seed_embeddings',
                             help='Path to save embeddings')
     

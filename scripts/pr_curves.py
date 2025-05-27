@@ -1,9 +1,26 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-
+import argparse
 
 if __name__ == "__main__":
+    
+    
+    argparser = argparse.ArgumentParser(description="Plot PR curves for SPACE and other methods.")
+    argparser.add_argument('--cv_data', type=str, default='data/benchmark_results/sub_loc/cv_data.csv',
+                        help='Path to the cross-validation data CSV file.')
+    argparser.add_argument('--cv_pr_curves', type=str, default='data/benchmark_results/sub_loc/cv_pr_curves.csv',
+                        help='Path to the cross-validation PR curves CSV file.')
+    argparser.add_argument('--hpa_pr_curves', type=str, default='data/benchmark_results/sub_loc/hpa_pr_curves.csv',
+                        help='Path to the HPA PR curves CSV file.')
+    argparser.add_argument('--cafa_eval_index', type=str, default='data/benchmark_results/func_pred/cafa-eval-index',
+                        help='Path to the CAFA evaluation index directory.')
+    argparser.add_argument('--scores_csv', type=str, default='data/benchmark_results/func_pred/scores.csv',
+                        help='Path to the scores CSV file for functional prediction.')
+    argparser.add_argument('--output', type=str, default='results/pr_curves.png',
+                        help='Output path for the PR curves plot.')
+    args = argparser.parse_args()
+    
 
     custom_dashes = [5, 8]
     title_size = 14
@@ -11,14 +28,8 @@ if __name__ == "__main__":
     label_size = 14
     legend_fontsize = 14
 
-
-    df_cv = pd.read_csv("data/benchmark_results/sub_loc/cv_pr_curves.csv")
-    df_hpa = pd.read_csv("data/benchmark_results/sub_loc/hpa_pr_curves.csv")
-
-    ## number of positive samples
-    pos_cv = pd.read_csv('data/benchmark_results/sub_loc/cv_data.csv')
-    pos_num = pos_cv.iloc[:,1:-1].sum().values.sum()
-    pos_num/(pos_cv.iloc[:,1:-1].shape[0]*len(pos_cv.columns[1:-1]))
+    df_cv = pd.read_csv(args.cv_pr_curves)
+    df_hpa = pd.read_csv(args.hpa_pr_curves)
 
     plt.figure(figsize=(18, 10))
     plt.subplots_adjust(wspace=0.3,hspace=0.37)  # Increase vertical space between plots
@@ -40,10 +51,6 @@ if __name__ == "__main__":
     plt.gca().spines['right'].set_visible(False)
     plt.title("SwissProt Cross Validation Set",fontsize=title_size)
 
-    ## number of positive samples
-    pos_hpa = pd.read_csv('data/benchmark_results/sub_loc/hpa_testset_mapped.csv')
-    pos_num = pos_hpa.iloc[:,1:-1].sum().values.sum()
-    pos_num/(pos_hpa.iloc[:,1:-1].shape[0]*len(pos_hpa.columns[1:-1]))
 
     plt.subplot(2, 3, 2)
     plt.plot(df_hpa['space_recall'], df_hpa['space_prec'], label='SPACE', color=colors[2], linestyle='-', linewidth=2)
@@ -75,12 +82,10 @@ if __name__ == "__main__":
 
     plt.title("HPA Test Set",fontsize=title_size)
 
-    # plt.tight_layout()
-    # plt.savefig("../manuscript_figs/fig3_a.png", dpi=300, bbox_inches='tight')
 
-    pr_rc_dir = 'data/benchmark_results/func_pred/cafa-eval-index'
     aspects = ['mf', 'bp','cc']
-    netgo_scores = pd.read_csv('data/benchmark_results/func_pred/scores.csv')
+
+    netgo_scores = pd.read_csv(args.scores_csv)
     # plt.figure(figsize=(15, 8))
     label_dict = {'aligned':"Aligned", 'seq':"ProtT5", 'space':"SPACE"}
     aspect_dict = {'cc':"Cellular Component", 'bp':"Biological Process", 'mf':"Molecular Function"}
@@ -94,7 +99,7 @@ if __name__ == "__main__":
             else:
                 emb_ = emb
 
-            df = pd.read_csv(f'{pr_rc_dir}/{aspect}_{emb_}_merged.csv')
+            df = pd.read_csv(f'{args.cafa_eval_index}/{aspect}_{emb_}_merged.csv')
             rc,pr = df['rc'].values, df['pr'].values
             ## make sure both rc and pr are 
             
@@ -119,5 +124,7 @@ if __name__ == "__main__":
                         fontsize=legend_fontsize)
 
     # plt.tight_layout()
-    plt.savefig('results/pr_curves.png',dpi=300, bbox_inches='tight')
-    plt.show()
+
+    plt.savefig(args.output, dpi=300, bbox_inches='tight')
+    print(f"PR curves saved to {args.output}")
+

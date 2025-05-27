@@ -17,15 +17,15 @@ if __name__ == '__main__':
     argparser = argparse.ArgumentParser(description='Align seed species')
 
     argparser.add_argument('--seed_species', type=str, default='data/seeds.txt',
-                            help='Path to seed species file')
+                            help='Path to seed species file, including the taxon IDs of the species to align')
     
-    argparser.add_argument('--node2vec_dir', type=str,default='data/node2vec',
+    argparser.add_argument('--node2vec_dir', type=str, default='data/node2vec',
                             help='Path to node2vec files')
     
     argparser.add_argument('--ortholog_dir', type=str,default='data/orthologs/seeds',
                             help='Path to eggnog group files')
     
-    argparser.add_argument('--embedding_save_folder', type=str,default='results/seeds',
+    argparser.add_argument('--aligned_embedding_save_dir', type=str,default='results/aligned_embeddings',
                             help='Path to save embeddings')
     
     argparser.add_argument('--save_top_k', type=int, default=3,

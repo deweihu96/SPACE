@@ -4,24 +4,18 @@
 
 import argparse
 import os
-from loguru import logger
-import sys
 from space.models.node2vec import run_single_embedding
 
 
 def main(args):
 
-    
-    logger.remove()
-    logger.add(sys.stdout, format="{time} {level} {message}", level="INFO")
-
-    species_name = os.path.basename(args.input_file).split(".")[0]
+    species_name = os.path.basename(args.input_network).split(".")[0]
 
     # create a temporary file
-    temp_path = f"{args.output_folder}/{species_name}.tsv"
+    temp_path = f"{args.node2vec_output}/{species_name}.tsv"
 
     # run the single embedding
-    run_single_embedding(args.input_file, temp_path, args.output_folder, args.dimensions, 
+    run_single_embedding(args.input_network, temp_path, args.node2vec_output, args.dimensions, 
                         args.p, args.q, args.num_walks, args.walk_length, args.window_size, args.sg, 
                         args.negative, args.epochs, args.workers, args.random_state)
 
@@ -36,11 +30,11 @@ if __name__ == "__main__":
 
     parser_single_embedding = argparse.ArgumentParser(description="Run node2vec on STRING functional networks with PecanPy.")
 
-    parser_single_embedding.add_argument('-i','--input_file', type=str, help='File to run the\
+    parser_single_embedding.add_argument('-i','--input_network', type=str, help='File to run the\
                                         embedding for, e.g. <species_name>.tsv.gz. During running, the file will be processed into another temporary tsv file,\n\
                                         proteins will be replaced by integers, and the scores will be converted to float (0~1). Once finished, the temporary file will be deleted.')
                                       
-    parser_single_embedding.add_argument('-o','--output_folder', type=str, help='Path to the output folder to save the embeddings.\n\
+    parser_single_embedding.add_argument('-o','--node2vec_output', type=str, help='Path to the output folder to save the embeddings.\n\
                                          The embeddings will be saved in the format: <output_folder>/<species_name>.h5')
     
     
@@ -48,7 +42,7 @@ if __name__ == "__main__":
     parser_single_embedding.add_argument('-d', '--dimensions', type=int, default=128,help='The number of dimensions for the embedding.')
     parser_single_embedding.add_argument('-p', '--p', type=float, default=0.3, help='The return parameter for the random walk.')
     parser_single_embedding.add_argument('-q', '--q', type=float, default=0.7, help='The in-out parameter for the random walk.')
-    parser_single_embedding.add_argument('--num_walks', type=int, default=20, help='The number of walks to perform.')
+    parser_single_embedding.add_argument('--num_walks', type=int, default=10, help='The number of walks to perform.')
     parser_single_embedding.add_argument('--walk_length', type=int, default=50,help='The length of the walk.')
     parser_single_embedding.add_argument('--window_size', type=int, default=5, help='The window size for the skip-gram model.')
     parser_single_embedding.add_argument('--sg', type=int, default=1, help='The type of training to use for the skip-gram model. 0 for cbow, 1 for skip-gram.')
