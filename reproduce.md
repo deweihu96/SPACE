@@ -11,14 +11,14 @@ pip install .
 mkdir results
 ```
 
-### 2. Download the data from
-Download the data and decompress it to the `data` folder.
-The `data/` is around `212GB` in total, including the networks, sequences, all the embeddings, and benchmark datasets.
+### 2. Download the data
 
 If you only need to use the embeddings, you should download from the STRING website: https://string-db.org/cgi/download
 
 This data set only serves as a backup and reference for reimplementation.
 
+Download the data and decompress it to the `data` folder.
+The `data/` is around `212GB` in total, including the networks, sequences, all the embeddings, and benchmark datasets.
 ```bash
 wget https://sid.erda.dk/share_redirect/cZ4tLqQZhv -O data.tar
 tar -xvf data.tar 
@@ -135,18 +135,6 @@ python scripts/pr_curves.py
 # due to the copyright issue, we cannot provide the KEGG data and its evaluation
 ```
 
-#### 5. Alignment quality evaluation
-This part is not included in the preprint now.
-You can use the following scripts to evaluate the alignment quality of the functional embeddings.
 
-To assess if the orthologous proteins are similar to each other than non-orthologous proteins in the aligned embedding space. We sample the orthologs and non-orthologs to reduce the memory usage.
-Please check the code for the details of the sampling strategy.
-```bash
-python scripts/distances/og_sampling.py
-```
-
-
-To assess if the proteins are similar to each other in the same subcellular localization in the aligned embedding space:
-```bash
-python scripts/distances/deeploc_distance.py
-```
+#### 5. Generate the aligned embeddings with your own networks
+To be updated in the future.
