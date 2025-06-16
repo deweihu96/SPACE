@@ -135,5 +135,18 @@ python scripts/pr_curves.py
 # due to the copyright issue, we cannot provide the KEGG data and its evaluation
 ```
 
-#### 5. Generate the aligned embeddings with your own networks
-To be updated in the future.
+#### 5. Alignment quality evaluation
+This part is not included in the preprint now.
+You can use the following scripts to evaluate the alignment quality of the functional embeddings.
+
+To assess if the orthologous proteins are similar to each other than non-orthologous proteins in the aligned embedding space. We sample the orthologs and non-orthologs to reduce the memory usage.
+Please check the code for the details of the sampling strategy.
+```bash
+python scripts/distances/og_sampling.py
+```
+
+
+To assess if the proteins are similar to each other in the same subcellular localization in the aligned embedding space:
+```bash
+python scripts/distances/deeploc_distance.py
+```
