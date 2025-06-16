@@ -26,3 +26,10 @@ scripts/download.sh
 data.tar
 e6.og2seqs_and_species.tsv
 make_your_alignment.md
+scripts/cross_training.py
+cross_training_species.txt
+kegg_benchmarking.CONN_maps_in.v12.tsv
+kegg_single.py
+kegg_species.txt
+resub_/
+!scripts/distances/kegg_single.py

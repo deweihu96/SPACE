@@ -135,5 +135,6 @@ python scripts/pr_curves.py
 # due to the copyright issue, we cannot provide the KEGG data and its evaluation
 ```
 
+
 #### 5. Generate the aligned embeddings with your own networks
 To be updated in the future.
