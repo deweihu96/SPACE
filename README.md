@@ -1,5 +1,5 @@
 # SPACE: STRING proteins as complementary embeddings
-Code for the manuscript: ["SPACE: STRING proteins as complementary embeddings"](https://www.biorxiv.org/content/10.1101/2024.11.25.625140v1),
+Official repository for the paper in **Bioinformatics**: [SPACE: STRING proteins as complementary embeddings](https://doi.org/10.1093/bioinformatics/btaf496),
 in which we precalculated:
 - cross-species network embeddings 
 - ProtT5 sequence embeddings  
@@ -21,11 +21,11 @@ Please follow this [document](./reproduce.md).
 ## How to Cite
 If you use this work in your research, please cite **the SPACE manuscript**:  
 
-Hu, D., Szklarczyk, D., von Mering, C., & Jensen, L. J. (2024). SPACE: STRING proteins as complementary embeddings. bioRxiv, 2024-11. https://doi.org/10.1101/2024.11.25.625140  
+Hu, Dewei, et al. "SPACE: STRING proteins as complementary embeddings." Bioinformatics (2025): btaf496. [https://doi.org/10.1101/2024.11.25.625140](https://doi.org/10.1093/bioinformatics/btaf496)
 
 and **the STRING database**: 
 
-Szklarczyk, D., Nastou, K., Koutrouli, M., Kirsch, R., Mehryary, F., Hachilif, R., ... & von Mering, C. (2025). The STRING database in 2025: protein networks with directionality of regulation. Nucleic Acids Research, 53(D1), D730-D737. https://doi.org/10.1093/nar/gkae1113
+Szklarczyk, D., Nastou, K., Koutrouli, M., Kirsch, R., Mehryary, F., Hachilif, R., ... & von Mering, C. (2025). The STRING database in 2025: protein networks with directionality of regulation. Nucleic Acids Research, 53(D1), D730-D737. [https://doi.org/10.1093/nar/gkae1113](https://doi.org/10.1093/nar/gkae1113)
 
 ## Usage of SPACE embeddings
 To have the best prediction results, based on our test, it's better to concatenate the cross-species network embeddings and the ProtT5 sequence embeddings. (That is our **SPACE** embeddings mentioned [in the manuscript](https://www.biorxiv.org/content/10.1101/2024.11.25.625140v1).)
