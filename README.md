@@ -3,10 +3,9 @@
 ## Table of Contents
 - [Introduction](#introduction)
 - [Star History](#star-history)
-- [Reproduce the Results](#reproduce-the-results-in-the-manuscript)
+- [Reproduce the Results](#reproduce-the-results-in-the-paper)
 - [How to Cite](#how-to-cite)
-- [Usage of SPACE Embeddings](#usage-of-space-embeddings)
-  - [How to Read the Embedding Files](#how-to-read-the-embedding-files)
+- [How to load the embeddings](#how-to-load-the-embeddings)
     - [Python Example](#python-example)
     - [R Example](#r-example)
     - [Read Combined Files](#read-combined-files)
@@ -42,13 +41,7 @@ and **the STRING database**:
 
 Szklarczyk, D., Nastou, K., Koutrouli, M., Kirsch, R., Mehryary, F., Hachilif, R., ... & von Mering, C. (2025). The STRING database in 2025: protein networks with directionality of regulation. Nucleic Acids Research, 53(D1), D730-D737. [https://doi.org/10.1093/nar/gkae1113](https://doi.org/10.1093/nar/gkae1113)
 
-## Usage of SPACE embeddings
-To have the best prediction results, based on our test, it's better to concatenate the cross-species network embeddings and the ProtT5 sequence embeddings. (That is our **SPACE** embeddings mentioned [in the manuscript](https://www.biorxiv.org/content/10.1101/2024.11.25.625140v1).)
-
-
-### How to read the embedding files
-
-Install the `h5py` package to read the single species embedding files. We provide examples of reading the cross-species (aligned) network embeddings. The ProtT5 sequence embedding files have the same format.
+## How to load the embeddings
 
 The following code reads the cross-species network embedding file `9606.protein.network.embeddings.v12.0.h5`. 
 
