@@ -9,7 +9,7 @@
   - [How to Read the Embedding Files](#how-to-read-the-embedding-files)
     - [Python Example](#python-example)
     - [R Example](#r-example)
-    - [Reading Combined Files](#reading-combined-files)
+    - [Read Combined Files](#read-combined-files)
 - [Contact](#contact)
 - [License](#license)
 
@@ -30,7 +30,7 @@ You can [download all the embeddings from the STRING website](https://string-db.
 ## Star history
 [![Star History Chart](https://api.star-history.com/svg?repos=deweihu96/SPACE&type=Date)](https://www.star-history.com/#deweihu96/SPACE&Date)
 
-## Reproduce the results in the manuscript
+## Reproduce the results in the paper
 Please follow this [document](./reproduce.md).
 
 ## How to Cite
@@ -52,7 +52,7 @@ Install the `h5py` package to read the single species embedding files. We provid
 
 The following code reads the cross-species network embedding file `9606.protein.network.embeddings.v12.0.h5`. 
 
-In Python: 
+#### Python example 
 ```bash
 pip install h5py
 ```
@@ -75,7 +75,7 @@ with h5py.File(filename, 'r') as f:
     proteins = [p.decode('utf-8') for p in proteins]
 ```
 
-In R:  
+#### R example:  
 Install the `rhdf5` package to read the embedding files. The following code reads the embedding file `9606.protein.network.embeddings.v12.0.h5`.
 
 ```R
@@ -95,7 +95,7 @@ for (key in names(meta_keys)) {
 embeddings <- h5read(filename, "embeddings")
 proteins <- h5read(filename, "proteins")
 ```
-
+#### Read combined files
 Read the combined network embedding file of all eukaryotes  with Python
 ```Python
 import h5py
