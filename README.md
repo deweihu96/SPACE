@@ -1,4 +1,19 @@
 # SPACE: STRING proteins as complementary embeddings
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Star History](#star-history)
+- [Reproduce the Results](#reproduce-the-results-in-the-manuscript)
+- [How to Cite](#how-to-cite)
+- [Usage of SPACE Embeddings](#usage-of-space-embeddings)
+  - [How to Read the Embedding Files](#how-to-read-the-embedding-files)
+    - [Python Example](#python-example)
+    - [R Example](#r-example)
+    - [Reading Combined Files](#reading-combined-files)
+- [Contact](#contact)
+- [License](#license)
+
+## Introduction
 Official repository for the paper in **Bioinformatics**: [SPACE: STRING proteins as complementary embeddings](https://doi.org/10.1093/bioinformatics/btaf496),
 in which we precalculated:
 - cross-species network embeddings 
@@ -12,14 +27,14 @@ You can [download all the embeddings from the STRING website](https://string-db.
 
 ![SPACE](./figures/space_overview.png)
 
-## If you find our work interesting, please give us a star!
+## Star history!
 [![Star History Chart](https://api.star-history.com/svg?repos=deweihu96/SPACE&type=Date)](https://www.star-history.com/#deweihu96/SPACE&Date)
 
 ## Reproduce the results in the manuscript
 Please follow this [document](./reproduce.md).
 
 ## How to Cite
-If you use this work in your research, please cite **the SPACE manuscript**:  
+If you use this work in your research, please cite **the SPACE paper**:  
 
 Hu, Dewei, et al. "SPACE: STRING proteins as complementary embeddings." Bioinformatics (2025): btaf496. [https://doi.org/10.1101/2024.11.25.625140](https://doi.org/10.1093/bioinformatics/btaf496)
 
@@ -116,6 +131,8 @@ embeddings <- h5read(filename, paste0('species/', species, '/embeddings'))
 proteins <- h5read(filename, paste0('species/', species, '/proteins'))
 ```
 
+## Contact
+[dewei.hu@sund.ku.dk](dewei.hu@sund.ku.dk).
 
 
 ## License
