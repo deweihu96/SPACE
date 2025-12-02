@@ -100,12 +100,12 @@ with h5py.File(filename, 'r') as f:
     for key in meta_keys:
         print(key, f['metadata'].attrs[key])
   
-  species = '4932'  # if we check the brewer's yeast
-  embeddings = f['species'][species]['embeddings'][:]
-  proteins = f['species'][species]['proteins'][:]
-
-  # protein names are stored as bytes, convert them to strings
-  proteins = [p.decode('utf-8') for p in proteins]
+    species = '4932'  # if we check the brewer's yeast
+    embeddings = f['species'][species]['embeddings'][:]
+    proteins = f['species'][species]['proteins'][:]
+	
+    # protein names are stored as bytes, convert them to strings
+    proteins = [p.decode('utf-8') for p in proteins]
 
 ```
 Read the combined file with R
