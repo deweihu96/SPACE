@@ -2,7 +2,6 @@
 
 ## Table of Contents
 - [Introduction](#introduction)
-- [Star History](#star-history)
 - [Reproduce the Results](#reproduce-the-results-in-the-paper)
 - [How to Cite](#how-to-cite)
 - [How to load the embeddings](#how-to-load-the-embeddings)
@@ -10,6 +9,7 @@
     - [R Example](#r-example)
     - [Read Combined Files](#read-combined-files)
 - [Contact](#contact)
+- [Star History](#star-history)
 - [License](#license)
 
 ## Introduction
@@ -25,9 +25,6 @@ You can [download all the embeddings from the STRING website](https://string-db.
 - protein.sequence.embeddings.v12.0.h5
 
 ![SPACE](./figures/space_overview.png)
-
-## Star history
-[![Star History Chart](https://api.star-history.com/svg?repos=deweihu96/SPACE&type=Date)](https://www.star-history.com/#deweihu96/SPACE&Date)
 
 ## Reproduce the results in the paper
 Please follow this [document](./reproduce.md).
@@ -49,7 +46,6 @@ The following code reads the cross-species network embedding file `9606.protein.
 ```bash
 pip install h5py
 ```
-
 
 ```Python
 import h5py
@@ -127,6 +123,8 @@ proteins <- h5read(filename, paste0('species/', species, '/proteins'))
 ## Contact
 [dewei.hu@sund.ku.dk](dewei.hu@sund.ku.dk).
 
+## Star history
+[![Star History Chart](https://api.star-history.com/svg?repos=deweihu96/SPACE&type=Date)](https://www.star-history.com/#deweihu96/SPACE&Date)
 
 ## License
 MIT.
