@@ -20,7 +20,7 @@ in which we precalculated:
 
 for all eukaryotic proteins in STRING v12.0.
 
-You can [download all the embeddings from the STRING website](https://string-db.org/cgi/download):
+You can download all the embeddings from the [STRING website](https://string-db.org/cgi/download) or [Zenodo](https://zenodo.org/records/15600639):
 - protein.network.embeddings.v12.0.h5
 - protein.sequence.embeddings.v12.0.h5
 
