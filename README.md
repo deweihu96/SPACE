@@ -32,7 +32,7 @@ Please follow this [document](./reproduce.md).
 ## How to Cite
 If you use this work in your research, please cite **the SPACE paper**:  
 
-Hu, Dewei, et al. "SPACE: STRING proteins as complementary embeddings." Bioinformatics (2025): btaf496. [https://doi.org/10.1101/2024.11.25.625140](https://doi.org/10.1093/bioinformatics/btaf496)
+Hu, Dewei, et al. "SPACE: STRING proteins as complementary embeddings." Bioinformatics (2025): btaf496. [https://doi.org/10.1093/bioinformatics/btaf496](https://doi.org/10.1093/bioinformatics/btaf496)
 
 and **the STRING database**: 
 
