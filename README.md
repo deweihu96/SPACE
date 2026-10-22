@@ -1,5 +1,13 @@
 # SPACE: STRING proteins as complementary embeddings
 
+> [!NOTE]
+> **📢 Update (October 2026): SPACE embeddings are now available for STRING v12.5!**
+> Cross-species network embeddings and ProtT5 sequence embeddings for all eukaryotic proteins in STRING v12.5 can be downloaded from the [STRING website](https://string-db.org/cgi/download):
+> - `protein.network.embeddings.v12.5.h5`
+> - `protein.sequence.embeddings.v12.5.h5`
+>
+> The file format hasn't changed, so the loading examples below still work. Just replace `v12.0` with `v12.5` in the filenames. The v12.0 embeddings are still available from the [STRING v12.0 archive](https://version-12-0.string-db.org/cgi/download) and [Zenodo](https://zenodo.org/records/15600639).
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Reproduce the Results](#reproduce-the-results-in-the-paper)
